@@ -1,0 +1,18 @@
+export default {
+    language:'Language',
+    theme:'Theme',
+    chinese:'Chinese',
+    english:'English',
+    light:'Light',
+    dark:'Dark',
+    PublicService: 'Public Service',
+    CustomService: 'Custom Service',
+    LocalData: 'Local Data',
+    Sightline: 'Sightline',
+    Viewshed: 'Viewshed',
+    Skyline: 'Skyline',
+    LayerManage: 'Layer Manage',
+    AddLayer: 'Add Layer',
+    Analysis: 'Analysis',
+    Measure: 'Measure',
+}
