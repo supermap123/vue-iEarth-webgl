@@ -2,8 +2,8 @@
  * 完整组件
  * 统一打包组件库
  * */
-import store from './js/plugins/store';
-export { default as store } from './js/plugins/store';
+import store from './js/store/store';
+export { default as store } from './js/store/store';
 export { default as enUS } from './js/locales/enUS';
 export { default as darkTheme } from './js/theme/darkTheme';
 
