@@ -25,7 +25,7 @@ const message = useMessage();
 
 let props = defineProps({
   serviceOptions: {
-    type: Object,
+    type: Array,
     required: true
   },
   imgWidth: String,
@@ -33,6 +33,7 @@ let props = defineProps({
 });
 
 let options = ref(props.serviceOptions);
+// let options = props.serviceOptions;
 let storeState = inject("storeState");
 let storeActions = inject("storeActions");
 let { locale } = inject("storeData");
@@ -42,8 +43,8 @@ let isZH = computed(() => {
   return locale.value.Type === "zh" ? true : false;
 });
 
-//监听删除图层,恢复可加状态
-watch(storeState.deleteLayerName, val => {
+//监听删除图层,恢复可加状态state=0
+watch(()=>storeState.deleteLayerName, val => {
   options.value.forEach(data => {
     data.layers.forEach(layer => {
       if (layer.layerName === val) data.state = 0;
@@ -52,7 +53,7 @@ watch(storeState.deleteLayerName, val => {
 });
 
 // 添加场景后自定义事件
-const emit = defineEmits(["clickCallback"]);
+const emit = defineEmits(["addCallback"]);
 
 // 添加公共服务
 function addService(data) {
@@ -65,12 +66,11 @@ function addService(data) {
     .then(layers => {
       message.success(locale.value.AddLayerSuccess);
       storeActions.setLayerChanges(); // 触发图层管理树更新
-      closeAddLayer(); // 关闭操作面弹窗
       data.state = 1;
-      emit("clickCallback", data, layers); //自定义事件
+      emit("addCallback", layers,data); //自定义事件
     })
     .catch(err => {
-      message.error(locale.value.AddLayerSuccess + ":" + err);
+      message.error(err);
     });
 }
 

@@ -3,10 +3,10 @@
   <sm-config-provider>
     <toolbar />
     <right-toolbar />
-    <sm-viewer :init-callback="removeLoading" />
+    <sm-viewer @init-callback='removeLoading'/>
     <!-- <layer-tree :show="state.showLayerTree" /> -->
     <keep-alive :max="5" :exclude="['addLayer']">
-      <component :is="state.seletcedComponent" :show="state.showComponent"></component>
+      <component :is="state.seletcedComponent" ></component>
     </keep-alive>
   </sm-config-provider>
 </template>

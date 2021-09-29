@@ -1,11 +1,11 @@
 <template>
-  <n-card closable @close="closePanel" v-show="show">
+  <n-card closable @close="closePanel">
     <n-tabs type="line" size="large" justify-content="space-evenly">
       <n-tab-pane name="PublicService" display-directive="show" :tab="resource.PublicService">
-        <sm-public-service @click-callback="clickCallback" :service-options="options" />
+        <sm-public-service @add-callback="addCallback" :service-options="options" />
       </n-tab-pane>
       <n-tab-pane name="CustomService" display-directive="show" :tab="resource.CustomService">
-        <sm-custom-service @closeEmit="closePanel" />
+        <sm-custom-service @add-callback="addCallback" />
       </n-tab-pane>
       <n-tab-pane name="LocalData" display-directive="show" :tab="resource.LocalData">本地数据</n-tab-pane>
     </n-tabs>
@@ -13,30 +13,31 @@
 </template>
 
 <script setup>
-import options from "js/public-service-config";
+import options from "@/js/public-service-config";
 import { inject } from "vue";
+let { resource, seletcedComponent } = inject("state");
 
-// 添加公共服务点击时回调，返回点击对象和添加的图层
-function clickCallback(data, layers) {
+// 添加公共服务时回调，返回添加的图层和点击对象
+function addCallback(layers, data) {
   // 白膜添加线框
-  if (data.style && data.style.fillStyle) {
+  if (data && data.style && data.style.fillStyle) {
     layers[0].style3D.lineColor = Cesium.Color.fromCssColorString(
       "rgb(67,67,67)"
     );
     layers[0].style3D.fillStyle = Cesium.FillStyle[data.style.fillStyle];
   }
+  //优化性能，设置最大可见距离(目前只有s3m图层有效)
+  layers.forEach(layer => {
+    if (!layer.visibleDistanceMax || layer.visibleDistanceMax > 12000) {
+      layer.visibleDistanceMax = 12000; //设置模型最可见距离
+    }
+  });
+  closePanel();
 }
 
-
-let props = defineProps({
-  show: Boolean
-});
-
-let resource = inject("resource");
-
-let showComponent = inject("showComponent");
-function closePanel(val) {
-  showComponent.value = val;
+//关闭界面
+function closePanel() {
+  seletcedComponent.value = null;
 }
 </script>
 

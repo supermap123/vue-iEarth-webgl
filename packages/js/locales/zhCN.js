@@ -38,7 +38,7 @@ export default {
     Mvt:'矢量瓦片',
     Scene:'场景',
     CheckLayerTypeError:'请检查添加类型是否正常？',
-    AddToken:'添加token（可不填）',
+    AddToken:'添加token（选填）',
     ISct:'是否iserver发布',
     DeleteLayerSuccess:'删除图层成功！',
     DeleteLayerSuccess:'删除图层成功！',

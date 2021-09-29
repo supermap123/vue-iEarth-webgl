@@ -26,22 +26,20 @@
 import { ref, watch,inject } from "vue";
 
 let {isViewer} = inject("storeState");
-let {resource,showComponent,seletcedComponent,showLayerTree}= inject("state");
+let { resource,seletcedComponent,showLayerTree } = inject("state");
 
 let isExtendToolbar = ref(true);
-
-function setSeletcedComponent(name){
-  if(seletcedComponent === name)
-    showComponent.value = !showComponent.value;
-  else {
-    seletcedComponent.value = name;
-    showComponent.value = true;
-  }
-}
 
 //初始化地球完成前不能点击toolbar
 let disableToolbar = ref(true);
 watch(isViewer, val =>  disableToolbar.value = false);
+
+  
+function setSeletcedComponent(name){
+  if(seletcedComponent.value === name)
+    seletcedComponent.value = null;
+  else  seletcedComponent.value = name;
+}
 
 </script>
 

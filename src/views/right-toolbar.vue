@@ -19,7 +19,6 @@ import locales from "@/js/locales/index.js";
 import { enUS, darkTheme } from "vue-webgl";
 
 let { resource } = inject("state");
-let store = inject("state");
 let { setLocale, setTheme } = inject("storeActions");
 
 let state = reactive({

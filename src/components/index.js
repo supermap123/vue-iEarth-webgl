@@ -4,14 +4,14 @@ import loading from './loading.vue'
 // import measure from './measure.vue'
 // import layerTree from './layer-tree.vue'
 // import analysis from './analysis.vue'
-// import addLayer from './add-layer.vue'
+import addLayer from './add-layer.vue'
 
 const components = [
     loading,
     // measure,
     // layerTree,
     // analysis,
-    // addLayer,
+    addLayer,
 ];
 
 const names = [
@@ -19,7 +19,7 @@ const names = [
     // 'measure',
     // 'layerTree',
     // 'analysis',
-    // 'addLayer'
+    'addLayer'
 ]
 
 const install = (app, options) => {

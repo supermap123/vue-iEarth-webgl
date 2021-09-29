@@ -34,4 +34,9 @@ export default {
     Confirm:'Confirm',
     LayerAddressTip:'The layer address cannot be empty!',
     LayerNameTip:'The layer name cannot be empty!',
+    Mvt:'Vector tiles',
+    Scene:'Scene',
+    CheckLayerTypeError:'Please check whether the addition type is normal?',
+    AddToken:'Add token(Optional)',
+    ISct:'Is iserver released',
 }

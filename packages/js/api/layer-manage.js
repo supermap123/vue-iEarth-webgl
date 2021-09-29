@@ -10,7 +10,9 @@ function addS3mLayers(scps) {  //scps:[{ url, name]}
                 );
             });
         }
-        setPromise(promiseArray)
+        return new Promise((resolve, reject) => {
+            Cesium.when.all(promiseArray, (layers) =>  resolve(layers) , (e) => reject(e))
+        })
     } catch (e) {
         let widget = viewer.cesiumWidget;
         if (widget._showRenderLoopErrors) {
@@ -22,14 +24,16 @@ function addS3mLayers(scps) {  //scps:[{ url, name]}
 
 
 // 添加场景
-function addScene(url, isAutoSetView) {  
+function addScene(url, isAutoSetView) {
     // 自动定位
     let flag = true;
-    if (isAutoSetView !== undefined)  flag = options.autoSetView;
+    if (isAutoSetView !== undefined) flag = options.autoSetView;
     if (checkURL(url)) {
         try {
             let promise = viewer.scene.open(url, undefined, { 'autoSetView': flag });
-            setPromise([promise]);
+            return new Promise((resolve, reject) => {
+                resolve(promise)
+            })
         } catch (e) {
             let widget = viewer.cesiumWidget;
             if (widget._showRenderLoopErrors) {
@@ -122,9 +126,7 @@ function addMvtLayer(LayerURL, name) {    // 返回img图层layer
 // 加载s3m和场景函数
 function setPromise(promiseArray) {
     Cesium.when.all(promiseArray, (layers) => {
-        return new Promise((resolve, reject) => {
-            resolve(layers)
-        })
+        return layers
     },
         function (e) {
             let widget = viewer.cesiumWidget;

@@ -27,6 +27,7 @@ let viewer;
 function initViewer() {
   let isPCBroswer = Cesium.FeatureDetection.isPCBroswer();
   let options = {};
+
   if (props.viewerOptions) Object.assign(options, props.viewerOptions);
   if (isPCBroswer) {
     let options1 = {
@@ -40,10 +41,11 @@ function initViewer() {
     viewer = new Cesium.Viewer("cesiumContainer", options);
     // 太阳光默认打开
     viewer.scene.globe.enableLighting = true;
-    //隐藏时间线控件
+    // 隐藏时间线控件
     document.getElementsByClassName(
       "cesium-viewer-timelineContainer"
     )[0].style.visibility = "hidden";
+    
   } else {
     let options2 = {
       selectionIndicator: false,
@@ -55,9 +57,8 @@ function initViewer() {
     viewer = new Cesium.Viewer("cesiumContainer", options);
     viewer.scene.globe.enableLighting = false;
     document.documentElement.style.height = window.innerHeight + "px";
-    document.addEventListener("touchmove", e => e.preventDefault(), false);
+    document.addEventListener("touchmove", e => {e.passive();e.preventDefault()}, false);
   }
-
   // 其他设置
   window.viewer = viewer; //绑定到window
   storeActions.setIsViewer(); //初始化viewer标志
