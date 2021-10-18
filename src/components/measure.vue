@@ -1,21 +1,19 @@
 <template>
-  <n-card closable @close="showComponent = false" v-show="show" content-style="padding:6px;">
+  <n-card closable @close="closePanel"  content-style="padding:6px;">
       <sm-measure/>
   </n-card>
 </template>
 
 <script setup>
-// import measure from "ucomps/measure/index.js";
-// import {NCard} from "naive-ui";
-import {inject} from 'vue'
+import { inject } from 'vue'
 
-let showComponent= inject("showComponent");
+let { seletcedComponent } = inject("state");
 
 
-defineProps({
-  show: Boolean
-});
-
+//关闭界面
+function closePanel() {
+  seletcedComponent.value = null;
+}
 </script>
 
 <style lang="scss" scoped>

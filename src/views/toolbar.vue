@@ -6,6 +6,9 @@
             <n-space v-show="isExtendToolbar">
               <n-button text @click="setSeletcedComponent('addLayer')" class="iconfont iconiEarth-tianjia" :title="resource.AddLayer"></n-button>
               <n-button text @click="setSeletcedComponent('analysis')" class="iconfont icontoolbar-analysis" :title="resource.Analysis"></n-button>
+              <n-button text @click="setSeletcedComponent('clip')" class="iconfont iconcaijian1" :title="resource.Clip"></n-button>
+              <n-button text @click="setSeletcedComponent('terrain')" class="iconfont icondixing" :title="resource.Terrain"></n-button>
+              <n-button text @click="setSeletcedComponent('draw')" class="iconfont iconzaixianbianji" :title="resource.Draw"></n-button>
               <n-button text @click="setSeletcedComponent('measure')" class="iconfont iconliangsuan" :title="resource.Measure"></n-button>
             </n-space>
             <n-button text @click="isExtendToolbar=!isExtendToolbar" :class="isExtendToolbar? 'iconfont iconiEarth-R8-xiugai_shouqi' : 'iconfont iconiEarth-R8-xiugai_zhankai'" ></n-button>

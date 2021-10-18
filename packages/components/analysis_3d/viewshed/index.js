@@ -1,7 +1,7 @@
 import viewshed from './viewshed.vue';
 
 viewshed.install = function (app) {
-    app.component(viewshed.name, viewshed);
+    app.component('SmViewshed', viewshed);
 };
 
 export default viewshed;

@@ -9,7 +9,7 @@ import layerManage from '../api/layer-manage'
 const storeState = {
     isViewer: ref(false),       //初始化完成viewer置为true
     layerChanges : ref(0),      //图层改变监听的值，只关心变化
-    deleteLayerName:'',         //删除图层名称，用于图层树交互
+    deleteLayerName:ref(null),         //删除图层名称，用于图层树交互
 };
 
 // 全局数据
@@ -34,6 +34,9 @@ const storeActions = {
         if(value) storeData.theme.value = value;
         else storeData.theme.value = null;
     },
+    setDeleteLayerName(name){
+        storeState.deleteLayerName.value = name;
+    }
 };
 
 Object.assign(storeActions,layerManage);

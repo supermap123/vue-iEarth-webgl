@@ -16,7 +16,7 @@ let props = defineProps({
 .n-card {
   width: auto;
   max-width: 400px;
-  min-width: 242px;
+  min-width: 256px;
   position: absolute;
   left: 10px;
   top: 65px;

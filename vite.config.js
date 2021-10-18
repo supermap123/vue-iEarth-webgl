@@ -12,5 +12,8 @@ export default defineConfig({
       'packages': resolve('./packages'),
       'vue-webgl': resolve('./packages/index.js'),
     },
-  }
+  },
+  server: {
+    host: '0.0.0.0'
+  },
 })

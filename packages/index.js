@@ -15,6 +15,14 @@ export { default as SmViewer } from './components/viewer/index';
 
 import SmCustomService from './components/add-service/custom-service/index';
 import SmPublicService from './components/add-service/public-service/index';
+import SmLayerTree from './components/layer/layer-tree/index';
+import SmMeasure from './components/measure/index';
+import SmViewshed from './components/analysis_3d/viewshed/index';
+import SmClipBox from './components/clip/clip-box/index';
+import SmClipPolygon from './components/clip/clip-polygon/index';
+import SmClipPlane from './components/clip/clip-plane/index';
+import SmClipCross from './components/clip/clip-cross/index';
+import SmTerrainIsoline from './components/terrain/terrain-isoline/index';
 
 // 引入组件
 const components = [
@@ -22,7 +30,14 @@ const components = [
     SmViewer,
     SmCustomService,
     SmPublicService,
-
+    SmLayerTree,
+    SmMeasure,
+    SmViewshed,
+    SmClipBox,
+    SmClipPolygon,
+    SmClipPlane,
+    SmClipCross,
+    SmTerrainIsoline
 ];
 
 const install = (app, options) => {

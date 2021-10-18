@@ -1,19 +1,25 @@
 <template>
   <n-config-provider
-    :locale="locale.naiveLocale"
-    :date-locale="locale.naiveDateLocale"
+    :locale="locale.NaiveLocale"
+    :date-locale="locale.NaiveDateLocale"
     :theme="theme"
     style="height:100%"
   >
     <n-message-provider>
-      <slot />
+      <n-notification-provider>
+        <slot />
+      </n-notification-provider>
     </n-message-provider>
   </n-config-provider>
 </template>
 
 <script setup>
 import { watch, ref, inject } from "vue";
-import { NConfigProvider, NMessageProvider } from "naive-ui";
+import {
+  NConfigProvider,
+  NMessageProvider,
+  NNotificationProvider
+} from "naive-ui";
 
 let { locale, theme } = inject("storeData");
 let { setLocale } = inject("storeActions");

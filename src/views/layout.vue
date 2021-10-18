@@ -1,22 +1,26 @@
 <template>
-  <!-- <loading /> -->
+  <loading />
   <sm-config-provider>
-    <toolbar />
+     <toolbar /> 
     <right-toolbar />
-    <sm-viewer @init-callback='removeLoading'/>
-    <!-- <layer-tree :show="state.showLayerTree" /> -->
+    <sm-viewer @init-callback='removeLoading' :opening-animation='false' />
+    <layer-tree :show="state.showLayerTree" />
     <keep-alive :max="5" :exclude="['addLayer']">
       <component :is="state.seletcedComponent" ></component>
     </keep-alive>
+    
   </sm-config-provider>
 </template>
 
 <script setup>
-import { ref, provide,reactive, shallowReactive, toRefs } from "vue";
+import {reactive ,provide,toRefs,inject,ref} from "vue";
 import toolbar from "./toolbar.vue";
 import rightToolbar from "./right-toolbar.vue";
 // 设置语言
 import zh from "@/js/locales/zh.js";
+import { darkTheme } from "vue-webgl";
+let { setTheme } = inject("storeActions");
+setTheme(darkTheme);  //默认设置深色
 
 //移除加载动画
 function removeLoading() {

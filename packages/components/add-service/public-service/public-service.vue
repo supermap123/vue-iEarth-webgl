@@ -1,5 +1,5 @@
 <template>
-  <n-space>
+  <n-space >
     <div
       class="n-tabs-img-item"
       v-for="(data,index) in options"
@@ -44,13 +44,13 @@ let isZH = computed(() => {
 });
 
 //监听删除图层,恢复可加状态state=0
-watch(()=>storeState.deleteLayerName, val => {
-  options.value.forEach(data => {
-    data.layers.forEach(layer => {
-      if (layer.layerName === val) data.state = 0;
-    });
-  });
-});
+// watch(storeState.deleteLayerName, val => {
+//   options.value.forEach(data => {
+//     data.layers.forEach(layer => {
+//       if (layer.layerName === val) data.state = 0;
+//     });
+//   });
+// });
 
 // 添加场景后自定义事件
 const emit = defineEmits(["addCallback"]);

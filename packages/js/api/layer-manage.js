@@ -27,19 +27,15 @@ function addS3mLayers(scps) {  //scps:[{ url, name]}
 function addScene(url, isAutoSetView) {
     // 自动定位
     let flag = true;
-    if (isAutoSetView !== undefined) flag = options.autoSetView;
+    if (isAutoSetView !== undefined) flag = isAutoSetView;
     if (checkURL(url)) {
         try {
             let promise = viewer.scene.open(url, undefined, { 'autoSetView': flag });
             return new Promise((resolve, reject) => {
-                resolve(promise)
+                Cesium.when(promise,(layers)=> resolve(layers),(e) => reject(e));
             })
         } catch (e) {
-            let widget = viewer.cesiumWidget;
-            if (widget._showRenderLoopErrors) {
-                let title = "An error occurred during rendering and rendering has stopped";
-                widget.showErrorPanel(title, undefined, e);
-            }
+          
         }
     }
 };
